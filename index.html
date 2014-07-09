@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<style>
+			html, body {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+			}
+
+			.block {
+				width: 200px;
+				height: 200px;
+				background-color: black;
+				margin: 10px;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="central.css" />
+	</head>
+	<body>
+		<div class="block-container">
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+			<div class="block"></div>
+		</div>
+		<script src="jquery.js"></script>
+		<script src="central.js"></script>
+		<script>
+
+			var central = $('.block-container').Central();
+
+			function demonstrate() {
+				setTimeout(function(){
+					central.retile({'left': '20%', 'width': '80%'});
+
+	    	        setTimeout(function(){
+	    	        	central.retile({'width': '100%', 'left': '0'});
+		        		demonstrate();
+		         	},2000);
+	        	 },2000);
+			}
+			demonstrate();
+		</script>
+	</body>
+</html>
