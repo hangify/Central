@@ -45,7 +45,7 @@ Then call 'retile' with a CSS dictionary to adjust the width or position of the 
 
 That's it! Please view index.html for a simple example. In the future, the plugin will
 be more abstract and allow you to provide your own names for the container and the
-inner block.
+inner blocks.
 
 ## Considerations
 
