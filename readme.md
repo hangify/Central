@@ -34,7 +34,18 @@ old ones are set visible again.
 
 ## Example
 
-Please view index.html for a simple example.
+Simply attach Central to a container div with class "block-container" containing
+items with class "block":
+
+    var container = $('block-container').Central();
+
+Then call 'retile' with a CSS dictionary to adjust the width or position of the container:
+
+    container.retile({'left': '20%', 'width': '80%'});
+
+That's it! Please view index.html for a simple example. In the future, the plugin will
+be more abstract and allow you to provide your own names for the container and the
+inner block.
 
 ## Considerations
 
