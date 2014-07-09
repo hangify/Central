@@ -1,6 +1,6 @@
 # Central.js
 
-A lightweight jquery tiling plugin.
+A lightweight jQuery tiling plugin.
 
 ## Motivation
 
