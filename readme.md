@@ -6,7 +6,7 @@ A lightweight jquery tiling plugin.
 
 Masonry is great. But centering the content in Masonry is a nightmare
 when the width of the content is changing. Furthermore, Masonry provides
-a lot of functionality Hangify just don't need.
+a lot of functionality Hangify just doesn't need.
 
 Floating is simple but centering the content relative to the container
 div is not simple.
