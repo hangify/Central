@@ -43,6 +43,9 @@ calculate and do repositioning in Javascript. No calculations are done
 in this library; it is left entirely to the browser in terms of CSS's
 inline-block directive.
 
+Please note that this plugin is currently under development and should not
+be considered production-ready, yet.
+
 ## Questions
 
 Feel free to contact phil@hangify.com or dev@hangify.com with any questions.
