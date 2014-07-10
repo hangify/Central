@@ -27,17 +27,26 @@ THE SOFTWARE.
 
 	function get_positions(container) {
 		var vis_posits = [];
-		container.children('div.block').not('.block-transition').not('.block-padding').each(function(i, e){
+		container.children('div.block').not('.block-transition').not('.block-padding').each(function(){
 			var rect = $(this).position();
 			vis_posits.push(rect);
 		});
 		return vis_posits;
 	}
 
+	function get_elements(container) {
+		var real_elems = [];
+		container.children('div.block').not('.block-transition').not('.block-padding').each(function(){
+			real_elems.push(this);
+		});
+		return real_elems;
+	}
+
 	function transition(container) {
+		var vis_elems = get_elements(container);
 		for (var i=0; i < old_pos.length; i++) {
-			container.append($('<div class="block block-transition block-show"></div>')
-				.css({'position': 'absolute', 'top': old_pos[i].top, 'left': old_pos[i].left}));
+			container.append($(vis_elems[i]).clone().addClass('block-transition')
+							.css({'visibility': 'visible','position': 'absolute', 'top': old_pos[i].top, 'left': old_pos[i].left}));
 		}
 		var new_pos = get_positions(container);
 		container.children('div.block-transition').not('.block-padding').each(function(i){
@@ -73,26 +82,14 @@ THE SOFTWARE.
 
 			var num_missing = blocks_missing();
 			for (var i = 0; i < num_missing; i++)
-				container.append('<div class="block block-padding"></div>');
-		});
-	}
-
-	function attachWindowResize(container, initial_width) {
-		var before_width = initial_width;
-		$(window).resize(function(event){
-			var current_width = container.width();
-			container.width(initial_width);
-			
-
-			before_width = container.width();
+				// &nbsp; is a hack to give it some content.
+				container.append('<div class="block block-padding">&nbsp;</div>');
 		});
 	}
 
 	$.fn.Central = function() {
 		var container = $(this);
-		var initial_width = container.width();
 
-        //attachWindowResize(container, initial_width);
         attachResize(container);
 
         container.resize();
@@ -100,17 +97,18 @@ THE SOFTWARE.
 
 		this.retile = function(_css) {
 			old_pos = get_positions(container);
-			container.children('div.block-padding').remove();
 			container.children('div.block').each(function(){
 				$(this).css('visibility', 'hidden');
 			});
+			container.children('div.block-padding').remove();
 		    container.css(_css);
 		    container.resize();
 		    transition(container);
 		    setTimeout(function(){
-		    	container.children('.block-transition').remove();
+		    	// Prevents a flicker when switching between block-transition and block.
+		    	container.children('.block-transition').fadeOut(100, function(){ $(this).remove();});;
 			    container.children('.block').not('.block-padding').each(function(){
-					$(this).css('visibility', 'visible');
+			    	$(this).css('visibility', 'visible');
 				});
 			}, 500);
 		}

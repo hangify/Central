@@ -31,17 +31,22 @@ THE SOFTWARE.
   	-o-transition: left .5s;
   	transition: left .5s;
 	text-align: center;
+	/* Do not let visible until initial black padding elements have been created. */
 	visibility: hidden;
 	/* Fixes margin issue. */
 	font-size: 0;
 }
 
 .block {
+	font-size: medium;
 	display: inline-block;
-	-webkit-transition: all .5s;
-  	-moz-transition: all .5s;
-  	-o-transition: all .5s;
-  	transition: all .5s;
+	/* Edit 'all' time here or add specific transitions.
+	 * DO NOT EDIT THE 'visibility' SETTINGS!
+	*/
+	-webkit-transition: all .5s, visibility 1ms;
+  	-moz-transition: all .5s, visibility 1ms;
+  	-o-transition: all .5s, visibility 1ms;
+  	transition: all .5s, visibility 1ms;
 }
 
 .block-padding {

@@ -57,6 +57,10 @@ inline-block directive.
 Please note that this plugin is currently under development and should not
 be considered production-ready, yet.
 
+Specifically, this plugin is missing a way to handle window resizing with
+transitions. This will be implemented in the future. Currently, window
+resizing causes the blocks to relocate (correctly) without css transitions.
+
 ## Questions
 
 Feel free to contact phil@hangify.com or dev@hangify.com with any questions.
