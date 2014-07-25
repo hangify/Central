@@ -97,20 +97,18 @@ THE SOFTWARE.
 
 		this.retile = function(_css) {
 			old_pos = get_positions(container);
-			container.children('div.block').each(function(){
-				$(this).css('visibility', 'hidden');
-			});
-			container.children('div.block-padding').remove();
-		    container.css(_css);
-		    container.resize();
-		    transition(container);
-		    setTimeout(function(){
-		    	// Prevents a flicker when switching between block-transition and block.
-		    	container.children('.block-transition').fadeOut(100, function(){ $(this).remove();});;
-			    container.children('.block').not('.block-padding').each(function(){
-			    	$(this).css('visibility', 'visible');
-				});
-			}, 500);
+			container.children('div.block').hide(100);
+            container.children('div.block-padding').remove();
+            container.css(_css);
+            container.resize();
+            transition(container);
+            setTimeout(function(){
+                // Prevents a flicker when switching between block-transition and block.
+                container.children('.block-transition').fadeOut(100, function(){ $(this).remove();});
+                container.children('.block').not('.block-padding').each(function(){
+                    $(this).show();
+                });
+            }, 100);
 		}
 
         return this;
