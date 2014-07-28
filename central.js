@@ -95,22 +95,23 @@ THE SOFTWARE.
         container.resize();
 		container.css('visibility', 'visible');
 
+      var timing = 200;
+
 		this.retile = function(_css) {
 			old_pos = get_positions(container);
-			container.children('div.block').hide(100);
+			container.children('div.block').hide(timing);
             container.children('div.block-padding').remove();
             container.css(_css);
             container.resize();
             transition(container);
             setTimeout(function(){
                 // Prevents a flicker when switching between block-transition and block.
-                container.children('.block-transition').fadeOut(100, function(){ $(this).remove();});
+                container.children('.block-transition').fadeOut(timing, function(){ $(this).remove();});
                 container.children('.block').not('.block-padding').each(function(){
                     $(this).show();
                 });
-            }, 100);
+            }, timing);
 		}
-
         return this;
     };
 }(jQuery));
