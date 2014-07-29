@@ -45,12 +45,21 @@ THE SOFTWARE.
 	function transition(container) {
 		var vis_elems = get_elements(container);
 		for (var i=0; i < old_pos.length; i++) {
-			container.append($(vis_elems[i]).clone().addClass('block-transition')
-							.css({'visibility': 'visible','position': 'absolute', 'top': old_pos[i].top, 'left': old_pos[i].left}));
+			container.append($(vis_elems[i]).clone().addClass('block-transition').css({
+				'visibility': 'visible',
+				'position': 'absolute',
+				'top': old_pos[i].top,
+				'left': old_pos[i].left,
+				'display': ''
+			}));
 		}
 		var new_pos = get_positions(container);
 		container.children('div.block-transition').not('.block-padding').each(function(i){
-			$(this).css({'position': 'absolute', 'top': new_pos[i].top, 'left': new_pos[i].left});
+			$(this).css({
+				'position': 'absolute',
+				'top': new_pos[i].top,
+				'left': new_pos[i].left
+			});
 		});
 	}
 
@@ -95,22 +104,25 @@ THE SOFTWARE.
         container.resize();
 		container.css('visibility', 'visible');
 
-      var timing = 200;
+      	var timing = 200;
 
 		this.retile = function(_css) {
 			old_pos = get_positions(container);
-			container.children('div.block').hide(timing);
-            container.children('div.block-padding').remove();
-            container.css(_css);
-            container.resize();
-            transition(container);
+			container.children('div.block').css('visibility', 'hidden');
             setTimeout(function(){
-                // Prevents a flicker when switching between block-transition and block.
-                container.children('.block-transition').fadeOut(timing, function(){ $(this).remove();});
-                container.children('.block').not('.block-padding').each(function(){
-                    $(this).show();
-                });
-            }, timing);
+            	container.children('div.block-padding').remove();
+            	container.css(_css);
+            	container.resize();
+            	transition(container);
+
+        	    setTimeout(function(){
+        	    	// Prevents a flicker when switching between block-transition and block.
+         			container.children('.block-transition').fadeOut(100, function(){ $(this).remove();});
+           			container.children('.block').not('.block-padding').each(function(){
+             		 	$(this).css('visibility', 'visible');
+               		});
+            	}, 1000);
+            }, 1);
 		}
         return this;
     };

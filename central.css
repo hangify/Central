@@ -26,10 +26,10 @@ THE SOFTWARE.
 	position: relative;
 	left: 0;
 	width: 100%;
-	-webkit-transition: left .5s;
-  	-moz-transition: left .5s;
-  	-o-transition: left .5s;
-  	transition: left .5s;
+	-webkit-transition: left 1s;
+  	-moz-transition: left 1s;
+  	-o-transition: left 1s;
+  	transition: left 1s;
 	text-align: center;
 	/* Do not let visible until initial black padding elements have been created. */
 	visibility: hidden;
@@ -43,10 +43,10 @@ THE SOFTWARE.
 	/* Edit 'all' time here or add specific transitions.
 	 * DO NOT EDIT THE 'visibility' SETTINGS!
 	*/
-	-webkit-transition: all .5s, visibility 1ms;
-  	-moz-transition: all .5s, visibility 1ms;
-  	-o-transition: all .5s, visibility 1ms;
-  	transition: all .5s, visibility 1ms;
+	-webkit-transition: all 1s, visibility 1ms;
+  	-moz-transition: all 1s, visibility 1ms;
+  	-o-transition: all 1s, visibility 1ms;
+  	transition: all 1s, visibility 1ms;
 }
 
 .block-padding {
